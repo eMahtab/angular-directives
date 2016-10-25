@@ -1,0 +1,63 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="main.css"/>
+  <script src="angular.min.js"></script>
+</head>
+
+<body ng-app="noteApp">
+
+<div class="container" ng-controller="NoteController">
+     <div ng-repeat="note in notes">
+            <my-note-directive title="note.title" note-body="note.note" last-updated="note.lastUpdated"></my-note-directive>
+     </div>
+</div>
+
+<script>
+var app = angular.module("noteApp", []);
+app.directive("myNoteDirective", function() {
+    return {
+        templateUrl : "note-template.html",
+        restrict:"E",
+        replace:true,
+        scope:{
+          header:'=title',
+          description:'=noteBody',
+          time:'=lastUpdated'
+        }
+    };
+});
+
+app.service('NoteDataService',function(){
+     return {
+
+       "notes":[
+                 {"title":"Note 1",
+                  "note":"I have to finish learning angular directive very soon",
+                  "lastUpdated":"27 Oct 2008"
+                 },
+                 {"title":"Note 2",
+                  "note":"Its hard but lets keep trying",
+                  "lastUpdated":"28 Oct 2008"
+                 },
+                 {"title":"Note 3",
+                  "note":"Easy is not an option",
+                  "lastUpdated":"29 Oct 2008"
+                 }
+       ]
+
+     };
+});
+
+app.controller('NoteController',function(NoteDataService,$scope){
+       $scope.notes=NoteDataService.notes;
+});
+
+</script>
+
+</body>
+
+
+
+</html>

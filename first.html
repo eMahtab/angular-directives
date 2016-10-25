@@ -1,0 +1,28 @@
+<html>
+
+<head>
+  <script src="angular.min.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+<div>
+<w3-test-directive></w3-test-directive>
+</div>
+
+<script>
+var app = angular.module("myApp", []);
+app.directive("w3TestDirective", function() {
+    return {
+        templateUrl : "template.html",
+        restrict:"EACM",
+        replace:true
+    };
+});
+</script>
+
+</body>
+
+
+
+</html>
