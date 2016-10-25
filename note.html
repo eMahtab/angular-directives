@@ -10,7 +10,9 @@
 
 <div class="container" ng-controller="NoteController">
      <div ng-repeat="note in notes">
-            <my-note-directive title="note.title" note-body="note.note" last-updated="note.lastUpdated"></my-note-directive>
+            <my-note-directive title="note.title" writer="Mahtab"
+              note-body="note.note" last-updated="note.lastUpdated">
+            </my-note-directive>
      </div>
 </div>
 
@@ -24,7 +26,8 @@ app.directive("myNoteDirective", function() {
         scope:{
           header:'=title',
           description:'=noteBody',
-          time:'=lastUpdated'
+          time:'=lastUpdated',
+          author:'@writer'
         }
     };
 });
